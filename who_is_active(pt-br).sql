@@ -21,7 +21,7 @@ Docs: http://whoisactive.com
 License:
     https://github.com/amachanic/sp_whoisactive/blob/master/LICENSE
 
-Cirilo Rocha: Traduzido para Português BR
+Cirilo Rocha: Traduzido para Português BR (v1.1)
 *********************************************************************************************/
 ALTER PROC dbo.sp_WhoIsActive
 (
@@ -794,7 +794,7 @@ BEGIN;
                             SUBSTRING(column_info, CHARINDEX(CHAR(255) COLLATE Latin1_General_Bin2, column_info)+2, CHARINDEX(']', column_info, CHARINDEX(CHAR(255) COLLATE Latin1_General_Bin2, column_info)+2) - CHARINDEX(CHAR(255) COLLATE Latin1_General_Bin2, column_info)-1)
                     END
                 ELSE ''
-            END AS nome_coluna_formatada,
+            END AS formatted_column_name,
             CASE output_group_order
                 WHEN 1 THEN '-----------------------------------'
                 WHEN 2 THEN
@@ -805,7 +805,7 @@ BEGIN;
                             SUBSTRING(column_info, CHARINDEX(']', column_info)+2, CHARINDEX('Non-Formatted:', column_info, CHARINDEX(']', column_info)+2) - CHARINDEX(']', column_info)-3)
                     END
                 ELSE ''
-            END AS tipo_coluna_formatada,
+            END AS formatted_column_type,
             CASE output_group_order
                 WHEN 1 THEN '---------------------------------------'
                 WHEN 2 THEN
@@ -820,7 +820,7 @@ BEGIN;
                             END
                     END
                 ELSE ''
-            END AS nome_coluna_não_formatada,
+            END AS unformatted_column_name,
             CASE output_group_order
                 WHEN 1 THEN '---------------------------------------'
                 WHEN 2 THEN
@@ -834,7 +834,7 @@ BEGIN;
                             END
                     END
                 ELSE ''
-            END AS tipo_coluna_não_formatada,
+            END AS unformatted_column_type,
             CASE output_group_order
                 WHEN 1 THEN '----------------------------------------------------------------------------------------------------------------------'
                 ELSE REPLACE(token, CHAR(255) COLLATE Latin1_General_Bin2, '')
